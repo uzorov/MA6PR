@@ -15,7 +15,7 @@ jobs:
 
       - name: Build docker rec image
         run: |
-          docker build ./rec -f ./rec-service/Dockerfile --tag uzorov/maprac6-rec:latest
+          docker build ./ -f ./rec-service/Dockerfile --tag uzorov/maprac6-rec:latest
 
 
       - name: Login to DockerHub
