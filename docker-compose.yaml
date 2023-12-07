@@ -24,9 +24,19 @@ services:
   book:
     build:
       context: .
-      dockerfile: /Dockerfile
+      dockerfile: /book-service/Dockerfile
     ports:
       - "80:80"
+    depends_on:
+      - postgres
+      - rabbitmq
+
+  rec:
+    build:
+      context: .
+      dockerfile: /rec-service/Dockerfile
+    ports:
+      - "81:81"
     depends_on:
       - postgres
       - rabbitmq
