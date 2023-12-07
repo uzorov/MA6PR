@@ -15,7 +15,7 @@ jobs:
 
       - name: Build docker rec image
         run: |
-          docker build ./ -f ./rec-service/Dockerfile --tag uzorov/maprac6-rec:latest
+          docker build . -f ./rec-service/Dockerfile --tag uzorovkirill/maprac6-rec:latest
 
 
       - name: Login to DockerHub
@@ -28,4 +28,6 @@ jobs:
       - name: Build and push rec service image
         run: |
             docker push ${{ secrets.DOCKER_USERNAME }}/maprac6-rec:latest
+          
+          
   
