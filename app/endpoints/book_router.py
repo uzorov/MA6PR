@@ -12,6 +12,11 @@ def get_books(book_catalog_service: BookCatalogService = Depends(BookCatalogServ
     return book_catalog_service.get_books()
 
 
+@book_catalog_router.get('/test')
+def get_books() -> str:
+    return "it works!"
+
+
 @book_catalog_router.get('/{book_id}')
 def get_book(book_id: UUID, book_catalog_service: BookCatalogService = Depends(BookCatalogService)) -> Book:
     book = book_catalog_service.get_book_by_id(book_id)
