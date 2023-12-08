@@ -11,7 +11,7 @@ COPY ./alembic /book-service/alembic
 COPY ./alembic.ini /book-service/alembic.ini
 
 
-EXPOSE PORT
+EXPOSE 80
 
 CMD ["/bin/sh", "-c", \
-    "uvicorn app.main:app --host 0.0.0.0 --port ${{ PORT }}"]
+    "uvicorn app.main:app --host 0.0.0.0 --port 80"]
