@@ -6,6 +6,30 @@ on:
 
 
 jobs:
+
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Prepare unit tests
+        run: |
+          sudo apt update
+          sudo apt install -y python3-pip
+          pip install -r requirements.txt
+
+      - name: Run unit tests
+        run: |
+          pytest ./tests/unit
+
+      - name: Run integration tests
+        run: |
+          pytest ./tests/integration
+          
+      
+
+
   build-and-push-to-dh:
     name: Build and push to DockerHub
     runs-on: ubuntu-latest

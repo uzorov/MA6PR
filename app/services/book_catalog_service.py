@@ -1,5 +1,7 @@
 import uuid
 from uuid import UUID
+
+from fastapi import Depends
 from pydantic import BaseModel, ConfigDict
 from typing import List
 from app.models.book import Book
@@ -9,8 +11,8 @@ from app.repositories.bd_books_repo import BookRepo
 class BookCatalogService:
     book_repo: BookRepo
 
-    def __init__(self) -> None:
-        self.book_repo = BookRepo()
+    def __init__(self, book_repo: BookRepo = Depends(BookRepo)) -> None:
+        self.book_repo = book_repo
 
     def get_books(self) -> List[Book]:
         return self.book_repo.get_books()

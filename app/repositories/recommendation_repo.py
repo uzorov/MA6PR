@@ -19,4 +19,8 @@ class RecommendationRepo:
         return recommendation
 
     def remove_recommendation(self, recommendation_id: UUID) -> None:
+        before_del = self.recommendations
         self.recommendations = [rec for rec in self.recommendations if rec.id != recommendation_id]
+
+        if len(before_del) == len(self.recommendations):
+            raise ValueError
