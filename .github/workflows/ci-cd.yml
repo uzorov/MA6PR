@@ -29,6 +29,7 @@ jobs:
           rm ./.env
           echo "AMQP_URL=$AMQP_URL
           POSTGRES_URL=$POSTGRES_URL
+          PORT=80
           " > .env
           sleep 5
           alembic upgrade head
