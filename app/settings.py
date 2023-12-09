@@ -6,7 +6,7 @@ class Settings(BaseSettings):
     # postgres_url: str = "postgresql://:uzorov@maprac6-postgres-1:5432/test"
     postgres_url: str = "postgresql://secUREusER:StrongEnoughPassword)@51.250.26.59:5432/postgres"
     port: str = "80"
-    model_config = SettingsConfigDict(env_file='.env')
+    # model_config = SettingsConfigDict(env_file='.env')
 
 
 settings = Settings()
