@@ -1,10 +1,13 @@
-from uuid import UUID
+from uuid import UUID, uuid4
 from typing import List
 from app.models.book import Book
 
 
 class BookRepo:
-    books = []
+    books = [
+        Book(id=uuid4(), title='Book Title', author='Author Name', genre='Fiction',
+             publisher='Publisher Name', description='Book Description')
+    ]
 
     def __init__(self, clear: bool = False) -> None:
 

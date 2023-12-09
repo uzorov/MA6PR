@@ -37,7 +37,7 @@ def second_book() -> Book:
                 publisher=publisher, description=description)
 
 
-book_test_repo = BookRepo()
+book_test_repo = BookRepo(clear=True)
 
 
 def test_empty_list() -> None:

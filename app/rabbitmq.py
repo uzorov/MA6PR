@@ -15,7 +15,8 @@ from app.settings import settings
 from app.services.book_catalog_service import BookCatalogService
 from app.services.recommendation_service import RecommendationService
 
-from app.repositories.bd_books_repo import BookRepo
+from app.repositories.book_repo import BookRepo
+from app.repositories.recommendation_repo import RecommendationRepo
 
 
 async def send_new_recommendation(rec: Recommendation):
@@ -38,19 +39,17 @@ async def process_new_recommendation(msg: IncomingMessage):
         data = json.loads(msg.body.decode())
         user_id = data['user_id']
 
-        book_catalog_service = BookCatalogService()  # Создаем экземпляр сервиса
+        book_catalog_service = BookCatalogService(BookRepo())
         books = book_catalog_service.get_books()
         rec_book = random.choice(books)
 
-        recommendation_service = RecommendationService()
+        recommendation_service = RecommendationService(RecommendationRepo())
 
         rec = recommendation_service.create_recommendation(user_id=user_id, recommended_book_id=rec_book.id)
 
         await send_new_recommendation(rec=rec)
     except:
         traceback.print_exc()
-    finally:
-        await msg.ack()
 
 
 async def consume(loop: AbstractEventLoop) -> AbstractRobustConnection:
