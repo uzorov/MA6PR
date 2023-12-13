@@ -16,9 +16,9 @@ class BookRepo:
 
     def _map_to_model(self, book: DBook) -> Book:
         result = Book.from_orm(book)
-        # if task.assignee is not 0:
-        #     result.assignee = self.assignee_repo.get_assignee_by_id(
-        #         task.assignee)
+        # if task.book is not 0:
+        #     result.book = self.book_repo.get_book_by_id(
+        #         task.book)
 
         return result
 

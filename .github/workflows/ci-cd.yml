@@ -34,7 +34,7 @@ jobs:
           sleep 5
           alembic upgrade head
         env:
-          AMQP_URL: amqp://guest:guest123@51.250.26.59:5672/
+          AMQP_URL: amqp://guest:guest123@localhost:5672/
           POSTGRES_URL: postgresql://postgres:password@localhost:5432/postgres
 
 
