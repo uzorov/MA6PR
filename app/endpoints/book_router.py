@@ -79,7 +79,7 @@ async def callback(request: Request):
                                                                            <p style="color: black;" >You're authorized now. Please use your token to get access to the services:</p>
                                                                             <p style="font-weight: bold;">{access_token}</p>
                                                                             <p style="color: black;">You may use service with next roles: {roles}</p>
-                                                                              <a href="http://localhost:80/docs#">Go to DOCS</a>
+                                                                              <a href="http://localhost:8000/docs#">Go to DOCS</a>
                                                                        </body>
                                                                    </html>
                                                                """
@@ -118,7 +118,7 @@ def keycloak_security(required_roles: Optional[list] = None):
                                                                                        <body>
                                                                                            <p>Permission for your role denied</p>
                                                                                            <p>You may use service only with next roles: {roles}</p>
-                                                                                           <a href="http://localhost:80/book-api/book-catalog/login">Login</a>
+                                                                                           <a href="http://localhost:8000/book-api/book-catalog/login">Login</a>
                                                                                        </body>
                                                                                    </html>
                                                                                """
@@ -139,7 +139,7 @@ def keycloak_security(required_roles: Optional[list] = None):
                                                                    </head>
                                                                    <body>
                                                                        <p>You're not authorized. Please login with this URL first:</p>
-                                                                       <a href="http://localhost:80/book-api/book-catalog/login">Login</a>
+                                                                       <a href="http://localhost:8000/book-api/book-catalog/login">Login</a>
                                                                    </body>
                                                                </html>
                                                            """
@@ -158,7 +158,6 @@ def get_books(
 
         book_catalog_service: BookCatalogService = Depends(BookCatalogService),
         token: str = None,
-
 ):
     return book_catalog_service.get_books()
 
