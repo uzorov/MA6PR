@@ -5,13 +5,18 @@
 import asyncio
 from fastapi import FastAPI
 
+
 from app import rabbitmq
 from app.settings import settings
 
 from app.endpoints.book_router import book_catalog_router
 from app.endpoints.recommendation_router import recommendation_router
 
-app = FastAPI(title='Book Catalog with Recommendations Service')
+name='Book Catalog with Recommendations Service'
+
+app = FastAPI(title=name)
+
+
 
 
 @app.on_event('startup')

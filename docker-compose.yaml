@@ -31,15 +31,15 @@ services:
       - postgres
       - rabbitmq
 
-  rec:
-    build:
-      context: .
-      dockerfile: /rec-service/Dockerfile
-    ports:
-      - "81:81"
-    depends_on:
-      - postgres
-      - rabbitmq
+  #  rec:
+  #    build:
+  #      context: .
+  #      dockerfile: /rec-service/Dockerfile
+  #    ports:
+  #      - "81:81"
+  #    depends_on:
+  #      - postgres
+  #      - rabbitmq
 
   pgadmin:
     container_name: pgadmin
@@ -49,6 +49,16 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin
     ports:
       - "5050:80"
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.38
+    ports:
+      - 5775:5775/udp # accept zipkin.thrift over compact thrift protocol
+      - 6831:6831/udp # accept jaeger.thrift over compact thrift protocol
+      - 6832:6832/udp # accept jaeger.thrift over binary thrift protocol
+      - 5778:5778 # serve configs
+      - 16686:16686 # serve frontend
+      - 14268:14268 # accept jaeger.thrift directly from clients
 
 volumes:
   postgres_data:
